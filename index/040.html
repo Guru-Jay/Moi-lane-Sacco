@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>User Dashboard</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        display: flex;
+        min-height: 100vh;
+
+        
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url('../pngegg.png'); /* Replace with your image path */
+  background-size: cover; /* Ensure the image covers the full screen */
+  background-position: center; /* Position the image in the center */
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 250px;
+        background: #1f2a40;
+        color: white;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    /* Hidden state */
+    .sidebar.closed {
+        transform: translateX(-250px);
+    }
+
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    .sidebar a {
+        padding: 15px 25px;
+        text-decoration: none;
+        color: #cdd4e0;
+        font-size: 15px;
+        display: block;
+        transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+        background: #32415a;
+        color: #fff;
+    }
+
+    /* Toggle button */
+    .toggle-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: #1f2a40;
+        color: white;
+        padding: 10px 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    /* Main content */
+    .main {
+        margin-left: 250px;
+        padding: 30px;
+        transition: margin-left 0.3s ease;
+        width: 100%;
+    }
+
+    .main.shifted {
+        margin-left: 0;
+    }
+
+    /* Card styling */
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin-bottom: 25px;
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-header img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+
+    .badge {
+        display: inline-block;
+        background: #28a745;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .info p {
+        margin: 8px 0;
+        color: #444;
+        font-size: 15px;
+    }
+
+    .document-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .doc-actions button {
+        margin-left: 5px;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    .view-btn { background: #007bff; color: white; }
+    .upload-btn {
+        margin-top: 15px;
+        padding: 10px 12px;
+        background: #1f2a40;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .main {
+            margin-left: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Toggle Button -->
+<button class="toggle-btn" id="toggleBtn">☰</button>
+
+<!-- Sidebar -->
+<div class="sidebar closed" id="sidebar">
+    <h2>Dashboard</h2>
+    <h2>Moi Lane Sacco Ltd</h2>
+    <a href="#">Profile</a>
+    <a href="#">Identity</a>
+    <a href="#">Documents</a>
+    <a href="#">Security</a>
+    <a href="#">Settings</a>
+</div>
+
+<!-- Main Content -->
+<div class="main shifted" id="mainContent">
+
+    <!-- Profile Card -->
+    <div class="card">
+        <div class="profile-header">
+            <!-- <img src="pic.jpg" alt="User Photo"> -->
+            <div>
+                <h3>Bonface Akoyo</h3>
+                <!-- <p>john.doe@email.com</p> -->
+                <span class="badge">Verified</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Identity Card -->
+    <div class="card">
+        <h3>Identity Information</h3>
+        <div class="info">
+            <p><strong>Full Name:</strong> Bonface Akoyo</p>
+            <p><strong>Membership Number</strong> 040</p>
+            <p><strong>Number Plate:</strong> Blank</p>
+            <p><strong>Phone:</strong> blank</p>
+            <p><strong>Job Description:</strong> Delivery</p>
+            <p><strong>Area of Operation:</strong> CBD</p>
+            <p><strong>ID Number:</strong> Blank</p>
+        </div>
+    </div>
+
+    <!-- Documents Card -->
+    <div class="card">
+        <h3>Documents</h3>
+
+        <div class="document-row">
+            <span>Good Conduct.pdf</span>
+            <div class="doc-actions">
+                <button class="view-btn">View</button>
+            </div>
+        </div>
+
+        <div class="document-row">
+            <span>IDCard.png</span>
+            <div class="doc-actions">
+                <button class="view-btn">View</button>
+            </div>
+        </div>
+
+        <div class="document-row">
+            <span>Driving License.jpg</span>
+            <div class="doc-actions">
+                <button class="view-btn">View</button>
+            </div>
+        </div>
+
+        <a href="tel:+254722875633" ><button class="upload-btn" >Contact Chairman</button></a>
+        
+    </div>
+
+</div>
+
+<script>
+    const toggleBtn = document.getElementById("toggleBtn");
+    const sidebar = document.getElementById("sidebar");
+    const mainContent = document.getElementById("mainContent");
+
+    toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("closed");
+        mainContent.classList.toggle("shifted");
+    });
+</script>
+
+</body>
+</html>
